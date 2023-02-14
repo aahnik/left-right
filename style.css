@@ -1,0 +1,37 @@
+#container{
+    background-color: blanchedalmond;
+    display: flex;
+    justify-content: space-around;
+
+}
+.box{
+    width: 40vw;
+    height: 80vh;
+    line-height: 80vh;
+
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+}
+#left{
+    background-color: darkgreen;
+
+}
+#left:hover{
+    background-color: green;
+}
+
+#right{
+    background-color: darkred;
+}
+
+
+#right:hover{
+    background-color: red;
+}
+#prompt{
+    width: 100vw;
+    align-items: center;
+    text-align: center;
+    font-size: large;
+}
