@@ -13,15 +13,29 @@ let menuItem = document.getElementById("menuItem");
 
 let container = document.getElementById("container");
 
+let clickSound = new Audio("click.mp3");
+let errorSound = new Audio("error.mp3");
+
 start.addEventListener("click", () => {
+  onStart();
+});
+
+function handleEnter(event) {
+  if (event.key == "Enter") {
+    onStart();
+    removeEventListener("keypress", handleEnter);
+  }
+}
+addEventListener("keypress", handleEnter);
+
+function onStart() {
   menuItem.style.display = "none";
   container.style.display = "flex";
   let score_container = document.getElementById("score-container");
   score_container.style.display = "block";
-  onStart();
-});
-
-function onStart() {
+  afterStart();
+}
+function afterStart() {
   let left = document.getElementById("left");
   let right = document.getElementById("right");
 
@@ -44,8 +58,10 @@ function onStart() {
   elements.forEach((item) => {
     item.addEventListener("click", () => {
       if (item.id == direction) {
+        clickSound.play();
         score += 1;
       } else {
+        errorSound.play();
         score = -1;
       }
 

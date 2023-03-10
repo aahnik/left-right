@@ -45,6 +45,10 @@
     width: 40vw;
     height: 80vh;
     line-height: 80vh;
+    font-size: x-large;
+    text-transform: uppercase;
+    color: white;
+
 
     align-items: center;
     text-align: center;
