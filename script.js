@@ -8,6 +8,11 @@ function getDirection() {
   }
 }
 
+if (localStorage.getItem("highScore") === null)
+  localStorage.setItem("highScore", "0");
+let high_score_number = document.getElementById("high-score-number");
+high_score_number.innerHTML = localStorage.getItem("highScore");
+console.log(localStorage);
 let start = document.getElementById("start-btn");
 let menuItem = document.getElementById("menuItem");
 
@@ -52,6 +57,7 @@ function afterStart() {
   showDirection();
 
   let score = 0;
+  let gameOn = true;
   let score_number = document.getElementById("score-number");
   let lost_message = document.getElementById("lost-message");
 
@@ -62,15 +68,22 @@ function afterStart() {
         score += 1;
       } else {
         errorSound.play();
-        score = -1;
+        let lastHighScore = parseInt(localStorage.getItem("highScore"));
+        console.log(`Last High Score ${lastHighScore}`);
+        if (score > lastHighScore) {
+          // new high score tada
+          localStorage.setItem("highScore", score);
+        }
+
+        gameOn = false;
       }
 
-      if (score >= 0) {
+      if (gameOn) {
         score_number.innerHTML = score;
 
         showDirection();
       } else {
-        score_number.style.display = "none";
+        // score_number.style.display = "none";
         lost_message.style.display = "inline";
 
         container.style.display = "none";
