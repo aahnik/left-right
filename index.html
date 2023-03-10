@@ -8,12 +8,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="container">
-      <div id="left" class="box">Left</div>
-      <div id="right" class="box">Right</div>
+    <div id="menuItem">
+      <img src="./braingraphic_left_right.png" alt="" />
+      <h2 id="start-btn">start game</h2>
     </div>
-    <div id="prompt"></div>
-    <div id="score"></div>
+
+    <div id="score-container">
+      <h2>Score</h2>
+      <h3 id="lost-message">You loose. Refresh the page to restart!</h3>
+      <h2 id="score-number">0</h2>
+    </div>
+    <div id="container">
+      <div id="left" class="box"></div>
+      <div id="right" class="box"></div>
+    </div>
 
     <script src="script.js"></script>
   </body>
