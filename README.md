@@ -10,5 +10,5 @@ A simple game inspired by a similar android app.
 - [x] sound will be played on click and error
 - [ ] fix css to allign perfectly  and make responsive
 - [x] save the high score in browser cache
-- [ ] add timer, and make player loose if they dont click on time
+- [x] add timer, and make player loose if they dont click on time
 - [ ] add difficulty level options: optional top/bottom and timer levels

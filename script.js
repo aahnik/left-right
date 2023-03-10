@@ -45,7 +45,7 @@ function afterStart() {
   let right = document.getElementById("right");
 
   let elements = [left, right];
-
+  let timId;
   function showDirection() {
     direction = getDirection();
     let rndm = Math.random();
@@ -55,17 +55,38 @@ function afterStart() {
   }
 
   showDirection();
+  timId = setInterval(timerHandler, 1);
+  console.log(`first timer set id=${timId}`);
 
   let score = 0;
   let gameOn = true;
   let score_number = document.getElementById("score-number");
   let lost_message = document.getElementById("lost-message");
+  let timebar = document.getElementById("timebar");
 
+  function endGame() {
+    timebar.style.display = "none";
+
+    lost_message.style.display = "inline";
+    container.style.display = "none";
+  }
+  function timerHandler() {
+    timebar.value = timebar.value - 1;
+    if (timebar.value == 0) {
+      clearInterval(timId);
+      endGame();
+    }
+  }
   elements.forEach((item) => {
     item.addEventListener("click", () => {
       if (item.id == direction) {
         clickSound.play();
-        score += 1;
+        console.log(`trying to clear timer with id ${timId}`);
+        clearInterval(timId);
+
+        score += Math.round(timebar.value / 100);
+        timebar.value = 3000;
+        timId = setInterval(timerHandler, 1);
       } else {
         errorSound.play();
         let lastHighScore = parseInt(localStorage.getItem("highScore"));
@@ -84,9 +105,7 @@ function afterStart() {
         showDirection();
       } else {
         // score_number.style.display = "none";
-        lost_message.style.display = "inline";
-
-        container.style.display = "none";
+        endGame();
       }
       console.log(item);
     });
